@@ -1,0 +1,19 @@
+module Kamarad {
+
+	struct KamaradAccountDetails {
+		string unique_id;
+		string name;
+		string phone_number;
+		string address;
+		long bank_number;
+		float balance;
+		float kamarad_credit;
+	};
+
+	interface KamaradOnline {
+		void register(in any kamaradAccountDetails, out any uniqueId);
+		void topup(in any uniqueId, in any amount, out any kamaradAccountDetails);
+		void getCredit(in any uniqueId, out any kamaradCredit);
+	};
+
+};
