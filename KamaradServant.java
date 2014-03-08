@@ -38,6 +38,15 @@ class KamaradServant implements KamaradOnlineOperations {
   }
 
   public void getCredit (org.omg.CORBA.Any uniqueId, org.omg.CORBA.AnyHolder kamaradCredit) {
+  	// check if hashtable contains the uniqueId key
+    if (this.allAccounts.containsKey(uniqueId.extract_string())) {
+    	accountDetails = this.allAccounts.get(uniqueId.extract_string());
+
+    	Any keyAux = ORB.init().create_any();
+			keyAux.insert_float(accountDetails.kamarad_credit);
+			kamaradCredit.value = keyAux;
+
+    }
 
   }
 

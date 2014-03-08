@@ -80,6 +80,14 @@ public class KamaradClient {
 			System.out.println(accountDetails.kamarad_credit);
 
 
+
+			// Stub to call GETCREDIT mehtod ############################################
+			AnyHolder anyHolderCredit = new AnyHolder();
+
+			kamaradRef.getCredit(anyID, anyHolderCredit);
+			System.out.println(anyHolderCredit.value.extract_float());
+
+
 		} catch (Exception e) {
 			System.out.println("ERROR : " + e) ;
 			e.printStackTrace(System.out);
