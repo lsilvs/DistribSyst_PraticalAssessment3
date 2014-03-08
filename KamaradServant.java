@@ -23,7 +23,18 @@ class KamaradServant implements KamaradOnlineOperations {
 	}
 
   public void topup (org.omg.CORBA.Any uniqueId, org.omg.CORBA.Any amount, org.omg.CORBA.AnyHolder kamaradAccountDetails) {
+  	// check if hashtable contains the uniqueId key
+    if (this.allAccounts.containsKey(uniqueId.extract_string())) {
+    	accountDetails = this.allAccounts.get(uniqueId.extract_string());
+    	accountDetails.balance = accountDetails.balance - amount.extract_float();
+    	accountDetails.kamarad_credit = accountDetails.kamarad_credit + amount.extract_float();
+    	allAccounts.put(uniqueId.extract_string(), accountDetails);
 
+    	Any keyAux = ORB.init().create_any();
+			KamaradAccountDetailsHelper.insert(keyAux, accountDetails);
+			kamaradAccountDetails.value = keyAux;
+
+    }
   }
 
   public void getCredit (org.omg.CORBA.Any uniqueId, org.omg.CORBA.AnyHolder kamaradCredit) {

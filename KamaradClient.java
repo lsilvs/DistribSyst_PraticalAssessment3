@@ -32,7 +32,7 @@ public class KamaradClient {
 			org.omg.CORBA.Object objRefKamarad = rootCtx.resolve(nc);
 			KamaradOnline kamaradRef = KamaradOnlineHelper.narrow(objRefKamarad);
 
-			// Stub for acountDetails
+			// Stub to call REGISTER mehtod #########################################
 			float balance = Float.parseFloat("250");
 			float kamaradCredit = Float.parseFloat("0");
 
@@ -58,6 +58,26 @@ public class KamaradClient {
 
 			kamaradRef.register(anyAccount, uniqueId);
 			System.out.println(uniqueId.value.extract_string());
+
+			
+			// Stub to call TOPUP mehtod ############################################
+			Any anyID = orb.create_any();
+			anyID.insert_string("0001");
+
+			Any anyAmount = orb.create_any();
+			anyAmount.insert_float(15);
+
+			AnyHolder anyHolderAccount = new AnyHolder();
+
+			kamaradRef.topup(anyID, anyAmount, anyHolderAccount);
+			accountDetails = KamaradAccountDetailsHelper.extract(anyHolderAccount.value);
+			System.out.println(accountDetails.unique_id);
+			System.out.println(accountDetails.name);
+			System.out.println(accountDetails.phone_number);
+			System.out.println(accountDetails.address);	
+			System.out.println(accountDetails.bank_number);
+			System.out.println(accountDetails.balance);
+			System.out.println(accountDetails.kamarad_credit);
 
 
 		} catch (Exception e) {
