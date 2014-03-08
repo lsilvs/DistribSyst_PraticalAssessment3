@@ -32,7 +32,32 @@ public class KamaradClient {
 			org.omg.CORBA.Object objRefKamarad = rootCtx.resolve(nc);
 			KamaradOnline kamaradRef = KamaradOnlineHelper.narrow(objRefKamarad);
 
+			// Stub for acountDetails
+			float balance = Float.parseFloat("250");
+			float kamaradCredit = Float.parseFloat("0");
+
+			KamaradAccountDetails accountDetails = new KamaradAccountDetails(
+					"", // uniqueId
+					"Alan Turing", // name
+					"0831776655", // phoneNumber
+					"NCI on Campus", // address
+					9876543, // bankNumber
+					balance, // balance
+					kamaradCredit // kamaradCredit
+			);
+
+			Any anyAccount = orb.create_any();
+			AnyHolder uniqueId = new AnyHolder();
 			
+			try {
+				KamaradAccountDetailsHelper.insert(anyAccount, accountDetails);
+			} catch (SystemException se) {
+				System.out.println("insert any error\n" + "Unexpected exception:\n" + se.toString ());
+				return;
+			}
+
+			kamaradRef.register(anyAccount, uniqueId);
+			System.out.println(uniqueId.value.extract_string());
 
 
 		} catch (Exception e) {
