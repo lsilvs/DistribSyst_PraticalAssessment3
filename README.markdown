@@ -8,7 +8,7 @@ NPDS_finalProject
  Practical Assessment 3
 
 
-  ## Running it
+  ## RUNNING IT
 
 Clone this repository
 
@@ -33,11 +33,11 @@ Run the client
 
 
 
-  ## Objective
+  ## OBJECTIVE
 
 You are required to develop an application that allows users to register for an online account with the Kamarad mobile operator. The Kamarad online account will allow users to top up their account, and to get the credit balance.
 
-  ## Security features:
+  ## SECURITY FEATURES
 
 Instructions to generate the ID:
 
@@ -52,7 +52,7 @@ Instructions to generate the ID:
 
 The IDL shall contain a struct KamaradAccountDetails. Note it is agreed that the structure shall change at a later stage during design. Therefore it is imperative that all information passed relating to this type shall be treated as an ANY.
 
-  ## Client
+  ## CLIENT
 
 The client presents the customer with a menu:
 
@@ -81,7 +81,7 @@ Get credit information (GetCreditKamarad)
 
 The client shall query the customer for their unique id. The unique id is passed to the servant. The servant shall return the credit value related to the unique id. The credit shall be returned as a parameter (out) in the service request.
 
-  ## Servant
+  ## SERVANT
 
 Note a unique id will also be associated with the struct containing the Kamarad a/c details. You may choose your own unique ID for this account. The information shall be stored in a hash table whereby the unique Id acts as a key to the details in the struct.
 
@@ -110,7 +110,7 @@ Get credit information (GetCreditKamarad)
 
 The unique ID shall be used as a key in a hash table that points to all the data on the customer that arrives in the service request. The server shall return the credit to the client as a parameter in the operation.
 
-  ## Servant
+  ## SERVER
 
 Note a unique id will also be associated with the struct containing the Kamarad a/c details. You may choose your own unique ID for this account. The information shall be stored in a hash table whereby the unique Id acts as a key to the details in the struct.
 
